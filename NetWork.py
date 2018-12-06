@@ -26,13 +26,10 @@ class Network(object):
             layer.forward(output)
             output = layer.output
         return output
+    #  训练函数      样本标签  输入样本  学习速率 训练轮数
     def train(self, labels, data_set, rate, epoch):
         '''
-        训练函数
-        labels: 样本标签
-        data_set: 输入样本
-        rate: 学习速率
-        epoch: 训练轮数
+
         '''
         for i in range(epoch):
             for d in range(len(data_set)):

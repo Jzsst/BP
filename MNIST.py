@@ -3,7 +3,7 @@
 
 import struct
 from datetime import datetime
-
+import numpy as np
 
 # 数据加载器基类
 from sympy import transpose
@@ -153,15 +153,23 @@ def evaluate(network, test_data_set, test_labels):
     return float(error) / float(total)
 
 
-def now():
+def now():#显示完成时间
     return datetime.now().strftime('%c')
 
+#对集合进行处理
+def transpose(args):
+    return map(
+        lambda arg: map(
+            lambda line: np.array(line).reshape(len(line), 1)
+            , arg)
+        , args
+    )
 
 def train_and_evaluate():
     last_error_ratio = 1.0
-    epoch = 0
-    train_data_set, train_labels = transpose(get_training_data_set())
-    test_data_set, test_labels = transpose(get_test_data_set())
+    epoch = 0#迭代次数
+    train_data_set, train_labels = transpose(get_training_data_set())#获取训练集和对应的标签
+    test_data_set, test_labels = transpose(get_test_data_set())#获取测试集和对应的标签
     network = Network([784, 100, 10])
     while True:
         epoch += 1

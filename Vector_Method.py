@@ -1,6 +1,6 @@
 
 # 全连接层实现类
-from sympy.printing.tests.test_numpy import np
+import numpy as np
 
 
 class FullConnectedLayer(object):
